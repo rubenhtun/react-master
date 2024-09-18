@@ -1,0 +1,57 @@
+/* App CSS Styles */
+.main-villa {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}
+
+.title {
+  margin-bottom: 20px;
+  color: #ff6600;
+}
+
+.add-img-btn-list {
+  max-width: 700px;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+}
+
+.add-img-btn {
+  display: inline-block;
+  margin: 5px;
+  padding: 10px;
+  border: none;
+  border-radius: 25px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.finish-btn {
+  width: 100px;
+  height: 100px;
+  margin-top: 30px;
+  padding: 10px;
+  background-color: #fff;
+  color: #ff6600;
+  border: none;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.finish-btn:active {
+  background-color: #ff6600;
+  color: #fff;
+  transform: scale(0.95);
+}

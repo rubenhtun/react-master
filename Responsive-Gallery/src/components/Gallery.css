@@ -1,0 +1,52 @@
+/* Gallery CSS Styles */
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #ddd;
+}
+
+.image-gallery {
+  padding: 20px;
+  column-count: 4;
+}
+
+.img-item {
+  display: inline-block;
+  margin-bottom: 10px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.img-item img {
+  width: 100%;
+  height: 100%;
+  transition: 0.5s ease;
+}
+
+.img-item:hover img {
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+
+/* Responsive For Devices' Widths */
+@media (max-width: 992px) {
+  .image-gallery {
+    column-count: 3;
+  }
+}
+
+@media (max-width: 768px) {
+  .image-gallery {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .image-gallery {
+    column-count: 1;
+  }
+}
