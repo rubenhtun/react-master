@@ -1,0 +1,17 @@
+/* src/components/Home.css */
+.home {
+  background-color: #36b0c9;
+  color: white;
+}
+
+/* src/components/About.css */
+.about {
+  background-color: #f4b400;
+  color: white;
+}
+
+/* src/components/Contact.css */
+.contact {
+  background-color: #ff4081;
+  color: white;
+}
