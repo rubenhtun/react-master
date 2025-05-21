@@ -1,17 +1,56 @@
-const MyContext = React.createContext("Hello React");
-class App extends React.Component {
-  render() {
-    return <Header />;
-  }
-}
-class Header extends React.Component {
-  render() {
-    return <Title />;
-  }
-}
-class Title extends React.Component {
-  static contextType = MyContext;
-  render() {
-    return <h1>{this.context}</h1>;
-  }
-}
+import React, { createRef } from "react";
+import { connect } from "react-redux";
+
+const Item = ({ name, price }) => (
+  <li>
+    {name}, ${price}
+  </li>
+);
+
+
+const App = (props) => {
+  let nameRef = createRef();
+  let priceRef = createRef();
+
+  const add = () => {
+    props.add(
+      props.items.length + 1,
+      nameRef.current.value,
+      priceRef.current.value
+    );
+  };
+
+  return (
+    <div>
+      <h1>Shopping List</h1>
+      <ul>
+        {props.items.map((i) => (
+          <Item key={i.id} name={i.name} price={i.price} />
+        ))}
+      </ul>
+      <input type="text" placeholder="Item name" ref={nameRef} /> <br />
+      <input type="text" placeholder="Item price" ref={priceRef} /> <br />
+      <button onClick={add}>Add</button>
+    </div>
+  );
+};
+
+const stateToProps = (state) => {
+  return {
+    items: state,
+  };
+};
+
+const dispatchToProps = (dispatch) => {
+  return {
+    add: (id, name, price) => {
+      dispatch({
+        type: "ADD",
+        item: { id, name, price },
+      });
+    },
+  };
+};
+
+const ReduxApp = connect(stateToProps, dispatchToProps)(App);
+export default ReduxApp;
