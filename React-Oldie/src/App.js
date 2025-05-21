@@ -1,56 +1,39 @@
-import React, { createRef } from "react";
-import { connect } from "react-redux";
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  useParams,
+} from "react-router-dom";
 
-const Item = ({ name, price }) => (
-  <li>
-    {name}, ${price}
-  </li>
-);
+const User = () => {
+  const { name } = useParams();
+  return <h1>Profile – {name}</h1>;
+};
 
-
-const App = (props) => {
-  let nameRef = createRef();
-  let priceRef = createRef();
-
-  const add = () => {
-    props.add(
-      props.items.length + 1,
-      nameRef.current.value,
-      priceRef.current.value
-    );
-  };
-
+const App = () => {
   return (
-    <div>
-      <h1>Shopping List</h1>
-      <ul>
-        {props.items.map((i) => (
-          <Item key={i.id} name={i.name} price={i.price} />
-        ))}
-      </ul>
-      <input type="text" placeholder="Item name" ref={nameRef} /> <br />
-      <input type="text" placeholder="Item price" ref={priceRef} /> <br />
-      <button onClick={add}>Add</button>
-    </div>
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li key="alice">
+              <Link to="/user/Alice">Alice</Link>
+            </li>
+            <li key="bob">
+              <Link to="/user/Bob">Bob</Link>
+            </li>
+          </ul>
+        </nav>
+        <div className="content">
+          <Routes>
+            <Route path="/user/:name" element={<User />} />
+          </Routes>
+        </div>
+      </div>
+    </Router>
   );
 };
 
-const stateToProps = (state) => {
-  return {
-    items: state,
-  };
-};
-
-const dispatchToProps = (dispatch) => {
-  return {
-    add: (id, name, price) => {
-      dispatch({
-        type: "ADD",
-        item: { id, name, price },
-      });
-    },
-  };
-};
-
-const ReduxApp = connect(stateToProps, dispatchToProps)(App);
-export default ReduxApp;
+export default App;
